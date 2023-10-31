@@ -6,10 +6,10 @@ import {
 // defining a custom element for the Header
 class MyHeader extends LitElement {
     constructor() {
-        super();
-        this.isModalOpen = false;
+        super()
+        this.isModalOpen = false
     }
-    
+
     toggleForm(event) {
         this.dispatchEvent(new CustomEvent('toggle-form'))
     }
@@ -36,13 +36,15 @@ const myModule = document.querySelector('#my-module')
 
 
 // adding an event listener to toggle the form's visibility
-const isModalOpen = false
+let isModalOpen = false
 
 
 Header.addEventListener('toggle-form', () => {
     // form.style.display = form.style.display === 'none' ? 'block' : 'none'
 
-    if (!isModalOpen) {
+    isModalOpen = !isModalOpen
+
+    if (isModalOpen) {
         // then open
         myModule.style.maxHeight = '100%'
         myModule.style.opacity = '1'
@@ -109,6 +111,7 @@ class MyFooter extends LitElement {
             // myModule.style.display = myModule.style.display === 'none' ? 'block' : 'none'
             myModule.style.maxHeight = '0'
             myModule.style.opacity = '0'
+            isModalOpen = false
         })
 
         // click => call userInputs()
@@ -116,6 +119,7 @@ class MyFooter extends LitElement {
             setTimeout(() => {
                 myModule.style.maxHeight = '0'
                 myModule.style.opacity = '0'
+                isModalOpen = false
                 this.userInputs()
             }, 2000)
         })
@@ -166,12 +170,9 @@ document.body.addEventListener("keydown", escapeButton)
 
 // function outsideClick(event) {
 //     if (!myModule.contains(event.target)) {
-//         myModule.style.maxHeight = '0';
-//         myModule.style.opacity = '0';
+//         myModule.style.maxHeight = '0'
+//         myModule.style.opacity = '0'
 //     }
 // }
 
 // document.body.addEventListener("click", outsideClick)
-
-
-
