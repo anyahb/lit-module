@@ -35,11 +35,11 @@ title.addEventListener('toggle-form', () => {
         // open
         myModule.style.maxHeight = '100%';
         myModule.style.opacity = '1';
-      } else {
+    } else {
         // closed
         myModule.style.maxHeight = '0';
         myModule.style.opacity = '0';
-      }
+    }
 })
 
 // defining a custom element for the form
@@ -113,12 +113,23 @@ class MyFooter extends LitElement {
         const country = document.querySelector('my-form').shadowRoot.querySelector('#country').value
         const subscribe = document.querySelector('my-form').shadowRoot.querySelector('#subscribe').checked
         const gender = document.querySelector('my-form').shadowRoot.querySelector('input[name="gender"]:checked').value
+        const mainContent = document.querySelector(".main-content")
 
-        console.log("User Input Data:")
-        console.log("Name: " + name)
-        console.log("Country: " + country)
-        console.log("Subscribe to newsletter: " + (subscribe ? 'Yes' : 'No'))
-        console.log("Gender: " + gender)
+        // create paragraphs for each user input
+        const nameParagraph = document.createElement('p')
+        nameParagraph.textContent = `Name: ${name}`
+        const countryParagraph = document.createElement('p')
+        countryParagraph.textContent = `Country: ${country}`
+        const subscribeParagraph = document.createElement('p')
+        subscribeParagraph.textContent = `Subscribe to newsletter: ${subscribe ? 'Yes' : 'No'}`
+        const genderParagraph = document.createElement('p')
+        genderParagraph.textContent = `Gender: ${gender}`
+
+        // append it to the mainContent div
+        mainContent.append(nameParagraph)
+        mainContent.append(countryParagraph)
+        mainContent.append(subscribeParagraph)
+        mainContent.append(genderParagraph)
     }
 
 }
