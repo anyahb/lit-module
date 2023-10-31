@@ -3,51 +3,55 @@ import {
     html
 } from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js'
 
-// defining a custom element for the title
-class MyTitle extends LitElement {
-    toggleForm() {
+// defining a custom element for the Header
+class MyHeader extends LitElement {
+    constructor() {
+        super();
+        this.isModalOpen = false;
+    }
+    
+    toggleForm(event) {
         this.dispatchEvent(new CustomEvent('toggle-form'))
     }
 
-    // render the title
+    // render the Header
     render() {
         return html `
-      <h1 @click="${this.toggleForm}">
+        <div id="my-header">
+      <h1>
         <slot></slot>
       </h1>
+      <button id="toggle-button" @click="${this.toggleForm}">Toggle Modal</button>
+      </div>
     `
     }
 }
 
-// register "my-title"
-customElements.define('my-title', MyTitle)
+// register "my-header"
+customElements.define('my-header', MyHeader)
 
 
-const title = document.querySelector('my-title')
-// const form = document.querySelector('#my-module')
+const Header = document.querySelector('my-header')
 const myModule = document.querySelector('#my-module')
 
 
 // adding an event listener to toggle the form's visibility
 const isModalOpen = false
 
-   
-    title.addEventListener('toggle-form', () => {
-        // form.style.display = form.style.display === 'none' ? 'block' : 'none'
-        if (!isModalOpen) {
-            // then open
-            myModule.style.maxHeight = '100%'
-            myModule.style.opacity = '1'
-        } else {
-            // then close
-            myModule.style.maxHeight = '0'
-            myModule.style.opacity = '0'
-        }
-    })
 
+Header.addEventListener('toggle-form', () => {
+    // form.style.display = form.style.display === 'none' ? 'block' : 'none'
 
-
-
+    if (!isModalOpen) {
+        // then open
+        myModule.style.maxHeight = '100%'
+        myModule.style.opacity = '1'
+    } else {
+        // then close
+        myModule.style.maxHeight = '0'
+        myModule.style.opacity = '0'
+    }
+})
 
 // defining a custom element for the form
 class MyForm extends LitElement {
@@ -77,7 +81,6 @@ class MyForm extends LitElement {
 }
 
 // register "my-form"
-
 customElements.define('my-form', MyForm)
 
 
@@ -147,3 +150,28 @@ class MyFooter extends LitElement {
 
 // register "my-footer"
 customElements.define('my-footer', MyFooter)
+
+//close modal with an escape button
+
+function escapeButton(event) {
+    if (event.key === "Escape") {
+        myModule.style.maxHeight = '0'
+        myModule.style.opacity = '0'
+    }
+}
+
+document.body.addEventListener("keydown", escapeButton)
+
+// close modal with an outside click
+
+// function outsideClick(event) {
+//     if (!myModule.contains(event.target)) {
+//         myModule.style.maxHeight = '0';
+//         myModule.style.opacity = '0';
+//     }
+// }
+
+// document.body.addEventListener("click", outsideClick)
+
+
+
