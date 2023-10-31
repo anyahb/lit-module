@@ -24,11 +24,22 @@ customElements.define('my-title', MyTitle)
 
 
 const title = document.querySelector('my-title')
-const form = document.querySelector('#my-module')
+// const form = document.querySelector('#my-module')
+const myModule = document.querySelector('#my-module');
 
+const isModuleOpen = false;
 // adding an event listener to toggle the form's visibility
 title.addEventListener('toggle-form', () => {
-    form.style.display = form.style.display === 'none' ? 'block' : 'none'
+    // form.style.display = form.style.display === 'none' ? 'block' : 'none'
+    if (!isModuleOpen) {
+        // open
+        myModule.style.maxHeight = '100%';
+        myModule.style.opacity = '1';
+      } else {
+        // closed
+        myModule.style.maxHeight = '0';
+        myModule.style.opacity = '0';
+      }
 })
 
 // defining a custom element for the form
@@ -59,6 +70,7 @@ class MyForm extends LitElement {
 }
 
 // register "my-form"
+
 customElements.define('my-form', MyForm)
 
 
@@ -81,9 +93,12 @@ class MyFooter extends LitElement {
         const submitButton = this.shadowRoot.getElementById('submitButton')
         const myModule = this.shadowRoot.host.getRootNode().querySelector('#my-module')
 
+
         // click => change display style
         cancelButton.addEventListener('click', () => {
-            myModule.style.display = myModule.style.display === 'none' ? 'block' : 'none'
+            // myModule.style.display = myModule.style.display === 'none' ? 'block' : 'none'
+            myModule.style.maxHeight = '0';
+            myModule.style.opacity = '0';
         })
 
         // click => call userInputs()
