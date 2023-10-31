@@ -25,22 +25,29 @@ customElements.define('my-title', MyTitle)
 
 const title = document.querySelector('my-title')
 // const form = document.querySelector('#my-module')
-const myModule = document.querySelector('#my-module');
+const myModule = document.querySelector('#my-module')
 
-const isModuleOpen = false;
+
 // adding an event listener to toggle the form's visibility
-title.addEventListener('toggle-form', () => {
-    // form.style.display = form.style.display === 'none' ? 'block' : 'none'
-    if (!isModuleOpen) {
-        // open
-        myModule.style.maxHeight = '100%';
-        myModule.style.opacity = '1';
-    } else {
-        // closed
-        myModule.style.maxHeight = '0';
-        myModule.style.opacity = '0';
-    }
-})
+const isModalOpen = false
+
+   
+    title.addEventListener('toggle-form', () => {
+        // form.style.display = form.style.display === 'none' ? 'block' : 'none'
+        if (!isModalOpen) {
+            // then open
+            myModule.style.maxHeight = '100%'
+            myModule.style.opacity = '1'
+        } else {
+            // then close
+            myModule.style.maxHeight = '0'
+            myModule.style.opacity = '0'
+        }
+    })
+
+
+
+
 
 // defining a custom element for the form
 class MyForm extends LitElement {
@@ -97,13 +104,17 @@ class MyFooter extends LitElement {
         // click => change display style
         cancelButton.addEventListener('click', () => {
             // myModule.style.display = myModule.style.display === 'none' ? 'block' : 'none'
-            myModule.style.maxHeight = '0';
-            myModule.style.opacity = '0';
+            myModule.style.maxHeight = '0'
+            myModule.style.opacity = '0'
         })
 
         // click => call userInputs()
         submitButton.addEventListener("click", () => {
-            this.userInputs()
+            setTimeout(() => {
+                myModule.style.maxHeight = '0'
+                myModule.style.opacity = '0'
+                this.userInputs()
+            }, 2000)
         })
     }
 
