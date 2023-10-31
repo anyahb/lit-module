@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "lit": "^3.0.1"
+  },
+  "devDependencies": {
+    "@babel/parser": "^7.23.0"
+  }
+}

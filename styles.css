@@ -1,0 +1,39 @@
+* {
+    font-family: Helvetica;
+  }
+  
+  body {
+    margin: 0;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+  
+  .headline {
+    font-size: 1.5rem;
+    text-decoration: underline;
+    text-decoration-color: lightgray;
+  }
+  
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  
+  #modal {
+    flex: 1;
+  }
+  
+  #instructions {
+    flex: 1;
+    padding: 1rem;
+    border-right: 1px solid lightgray;
+    height: calc(100vh - 2rem);
+    overflow-y: scroll;
+  }
+
+  #my-module form {
+    display: none;
+  }
