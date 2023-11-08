@@ -20,6 +20,9 @@ class MyPage extends LitElement {
         this.isModalOpen = false
         this.title = "privet"
 
+        this.addEventListener('close-overlay', this.closeOverlay)
+
+
         document.addEventListener('keydown', (event) => this.escapeButton(event));
 
 
@@ -29,10 +32,6 @@ class MyPage extends LitElement {
         });
 
 
-        
-
-
-
         document.addEventListener('modal-submitted', () => {
             const formValues = event.detail;
             console.log("Form values submitted:", formValues);
@@ -40,17 +39,11 @@ class MyPage extends LitElement {
             this.isModalOpen = true;
         });
 
-        document.body.addEventListener('click', (event) => {
-            const myModal = this.shadowRoot.querySelector('my-modal');
-            const otherDiv = myModal.otherDiv;
-            const overlay = myModal.shadowRoot.querySelector('#overlay');
-          
-            if (otherDiv.contains(event.target)) {
-              console.log("Yes");
-            } else {
-              console.log("No");
-            }
-          });
+    }
+
+
+    closeOverlay(){
+        this.closeModal()
     }
 
 

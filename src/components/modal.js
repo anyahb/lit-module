@@ -72,9 +72,19 @@ class MyModal extends LitElement {
         }));
     }
 
+
+    closeOverlay(event) {
+        this.dispatchEvent(new CustomEvent('close-overlay', {
+            bubbles: true,
+            composed: true
+        }));
+    }
+
+
+
     render() {
         return html `
-        <div id="overlay" class="${this.hasCloseClass ? '' : 'open'}" class="${this.open ? 'open' : ''}" @click="${this.overlay}></div>
+        <div id="overlay" class="${this.hasCloseClass ? '' : 'open'}"   @click="${this.closeOverlay}"></div>
         <div class="other">
         <header>
         <p>${this.title}</p>
