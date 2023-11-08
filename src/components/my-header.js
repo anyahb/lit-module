@@ -4,33 +4,32 @@ import {
 } from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js'
 
 import style from "../styles.css" assert {type: "css"}
-import '../index.js';
 
 // defining a custom element for the Header
 class MyHeader extends LitElement {
 
+
+
     static styles = [
         style
     ]
+
+    static properties = {
+        title: { type: String },
+        isModalOpen: {attribute: false}
+      }
 
     constructor() {
         super()
         this.isModalOpen = false
     }
 
-    toggleForm(event) {
-        this.dispatchEvent(new CustomEvent('toggle-form'))
-    }
-
     // render the Header
     render() {
         return html `
-        <div id="my-header">
-      <h1>
-        <slot></slot>
-      </h1>
-      <button id="toggle-button" @click="${this.toggleForm}">Toggle Modal</button>
-      </div>
+        <div>
+        <slot></div>
+        </div>
     `
     }
 }
@@ -40,27 +39,27 @@ customElements.define('my-header', MyHeader)
 
 
 const Header = document.querySelector('my-header')
-const myModule = document.querySelector('#my-module')
+const myModal = document.querySelector('#my-modal')
 
 
 // adding an event listener to toggle the form's visibility
-let isModalOpen = false
+// let isModalOpen = false
 
 
-Header.addEventListener('toggle-form', () => {
-    // form.style.display = form.style.display === 'none' ? 'block' : 'none'
+// Header.addEventListener('toggle-form', () => {
+//     // form.style.display = form.style.display === 'none' ? 'block' : 'none'
 
-    isModalOpen = !isModalOpen
+//     isModalOpen = !isModalOpen
 
-    if (isModalOpen) {
-        // then open
-        myModule.style.maxHeight = '100%'
-        myModule.style.opacity = '1'
+//     if (isModalOpen) {
+//         // then open
+//         myModal.style.maxHeight = '100%'
+//         myModal.style.opacity = '1'
       
-    } else {
-        // then close
-        myModule.style.maxHeight = '0'
-        myModule.style.opacity = '0'
-    }
-})
+//     } else {
+//         // then close
+//         myModal.style.maxHeight = '0'
+//         myModal.style.opacity = '0'
+//     }
+// })
 

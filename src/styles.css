@@ -9,17 +9,27 @@ body {
   line-height: 1.5;
 }
 
-#my-module {
+.my-modal {
   max-height: 100%;
-  opacity: 0;
-  transition: max-height 1.5s ease-in-out, opacity 1.5s ease-in-out;
-  width: 700px;
-  max-width: 100%;
-  max-height: 100%;
-  background: linear-gradient(135deg, #C33764, #1D2671); 
-  border-radius: 10px 10px 0px 0px;
-  margin-top: 20px;
+    transition: max-height 1s ease-in-out, opacity 1s ease-in-out;
+    width: 700px;
+    max-width: 100%;
+    max-height: 100%;
+    background: linear-gradient(135deg, #C33764, #1D2671);
+    border-radius: 10px 10px 0px 0px;
+    display: grid;
+    position: relative;
+    z-index: 2;
 }
+
+
+
+.my-modal.close {
+  max-height: 0;
+  opacity: 0;
+  z-index: -1;
+}
+
 
 .my-form label {
   font-size: 24px;
@@ -52,15 +62,7 @@ body {
   border-radius: 10px;
 } */
 
-#overlay {
-  position: fixed;
-  opacity: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0, .5);
-}
+
 
 button {
   width: 200px;
@@ -107,3 +109,31 @@ button {
 }
 
 
+#my-header {
+  padding-left: 20px;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 1;
+}
+
+
+
+#overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.other {
+  position: relative;
+  z-index: 2;
+}
