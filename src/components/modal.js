@@ -70,7 +70,7 @@ class MyModal extends LitElement {
 
     render() {
         return html `
-        <div id="overlay" class="${this.hasCloseClass ? '' : 'open'}"   @click="${this.closeOverlay}"></div>
+        <div id="overlay" class="${this.hasCloseClass ? '' : 'open'}" @click="${this.closeOverlay}"></div>
         <div class="other">
         <header>
         <p class="title">${this.title}</p>
@@ -81,14 +81,6 @@ class MyModal extends LitElement {
         `
     }
 
-    get hasCloseClass() {
-        return this.classList.contains('close')
-    }
-
-
-    get otherDiv() {
-        return this.shadowRoot.querySelector('.other')
-    }
 }
 
 customElements.define('my-modal', MyModal)

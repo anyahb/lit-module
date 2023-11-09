@@ -16,6 +16,7 @@ class MyFooter extends LitElement {
 
     static properties = {
         isSpinnerHidden: true,
+        isButtonClicked: false
       }
 
 
