@@ -183,4 +183,12 @@ button {
     
   }
 
+  .main-content {
+    display: none;
+  }
+
+  .main-content.shown {
+    display: block;
+  }
+
   

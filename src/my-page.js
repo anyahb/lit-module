@@ -32,21 +32,29 @@ class MyPage extends LitElement {
 
     }
 
-
-  submitButton(){
+    submitButton(event) {
         const formValues = event.detail
-        console.log("Form values submitted:", formValues)
+
+        this.nameValue = formValues.name
+        this.countryValue = formValues.country
+        this.subscribeValue = formValues.subscribe
+        this.genderValue = formValues.gender
+
+        this.closeModal()
+        this.isModalClosed = true
+
+        const mainContent = this.shadowRoot.querySelector('.main-content')
+        mainContent.classList.add('shown')
+        this.requestUpdate()
+    }
+
+    cancelButton() {
         this.closeModal()
         this.isModalClosed = true
     }
 
-   cancelButton() {
-        this.closeModal()
-        this.isModalClosed = true
-    }
 
-
-    closeOverlay(){
+    closeOverlay() {
         this.closeModal()
         this.isModalClosed = true
     }
@@ -63,7 +71,7 @@ class MyPage extends LitElement {
 
     escapeButton(event) {
         if (event.key === "Escape") {
-            this.closeModal() 
+            this.closeModal()
             this.isModalClosed = true
         }
     }
@@ -81,19 +89,28 @@ class MyPage extends LitElement {
 
     toggleForm() {
         const myModal = this.shadowRoot.querySelector('my-modal')
-        if (myModal) {
+        const mainContent = this.shadowRoot.querySelector('.main-content')
 
+        if (myModal) {
             if (this.isModalClosed) {
                 this.openModal()
+                mainContent.classList.remove('shown')
             } else {
                 this.closeModal()
             }
+
             this.isModalClosed = !this.isModalClosed
         }
     }
 
     render() {
         return html `
+        <div class="main-content ${this.isModalClosed ? 'shown' : ''}">
+            <p>Name: ${this.nameValue}</p>
+            <p>Country: ${this.countryValue}</p>
+            <p>Subscribe: ${this.subscribeValue ? 'Yes' : 'No'}</p>
+            <p>Gender: ${this.genderValue}</p>
+        </div>
         <button slot="toggle-button" @click="${this.toggleForm}">Toggle Modal</button>
         <my-modal .title="${this.title}" class="my-modal"></my-modal>
     `
@@ -101,5 +118,3 @@ class MyPage extends LitElement {
 }
 
 customElements.define('my-page', MyPage)
-
-
