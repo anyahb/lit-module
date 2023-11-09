@@ -137,3 +137,11 @@ button {
   position: relative;
   z-index: 2;
 }
+
+.shownSpinner {
+  display: block;
+  }
+
+  .hideSpinner {
+    display: none;
+    }

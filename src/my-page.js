@@ -22,6 +22,9 @@ class MyPage extends LitElement {
 
         this.addEventListener('close-overlay', this.closeOverlay)
 
+    
+
+
 
         document.addEventListener('keydown', (event) => this.escapeButton(event));
 
@@ -37,6 +40,7 @@ class MyPage extends LitElement {
             console.log("Form values submitted:", formValues);
             this.closeModal();
             this.isModalOpen = true;
+
         });
 
     }
