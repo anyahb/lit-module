@@ -33,6 +33,3 @@ class MyHeader extends LitElement {
 customElements.define('my-header', MyHeader)
 
 
-const Header = document.querySelector('my-header')
-const myModal = document.querySelector('#my-modal')
-

@@ -59,21 +59,12 @@ body {
 .my-form input[type="checkbox"],
 .my-form input[type="radio"] {
   width: 18px;
-  height: 18px; /* Adjust the size as desired */
+  height: 18px; 
 }
 
 .my-form select {
   width: 70%;
 }
-
-
-/* #toggle-button {
-  width: 150px;
-  height: 40px;
-  border-radius: 10px;
-} */
-
-
 
 button {
   width: 200px;
