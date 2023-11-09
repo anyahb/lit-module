@@ -9,6 +9,17 @@ body {
   line-height: 1.5;
 }
 
+
+@-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
 .my-modal {
   max-height: 100%;
     transition: max-height 1s ease-in-out, opacity 1s ease-in-out;
@@ -140,8 +151,36 @@ button {
 
 .shownSpinner {
   display: block;
+  border: 6px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 6px solid purple; 
+  width: 12px;
+  height: 12px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
   }
 
   .hideSpinner {
-    display: none;
+    display: block;
     }
+
+
+  .button-clicked {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+}
+
+  .shownSpinner {
+      margin-left: 20px; 
+  }
+
+  .title {
+    color: white;
+    font-size: 24px;
+    padding-left: 40px;
+    
+  }
+
+  

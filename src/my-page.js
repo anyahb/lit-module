@@ -8,7 +8,7 @@ import './components/modal.js';
 
 import style from "./styles.css" assert { type: "css"}
 
-export let isModalOpen = false;
+export let isModalClosed = false;
 
 
 class MyPage extends LitElement {
@@ -17,37 +17,38 @@ class MyPage extends LitElement {
     ]
     constructor() {
         super()
-        this.isModalOpen = false
-        this.title = "privet"
+        this.isModalClosed = false
+        this.title = "Please enter your information"
 
         this.addEventListener('close-overlay', this.closeOverlay)
 
-    
+        this.addEventListener('modal-cancelled', this.cancelButton)
 
+        this.addEventListener('modal-submitted', this.submitButton)
 
+        this.addEventListener('keydown', this.escapeButton);
 
         document.addEventListener('keydown', (event) => this.escapeButton(event));
 
-
-        document.addEventListener('modal-cancelled', () => {
-            this.closeModal();
-            this.isModalOpen = true;
-        });
+    }
 
 
-        document.addEventListener('modal-submitted', () => {
-            const formValues = event.detail;
-            console.log("Form values submitted:", formValues);
-            this.closeModal();
-            this.isModalOpen = true;
+  submitButton(){
+        const formValues = event.detail;
+        console.log("Form values submitted:", formValues);
+        this.closeModal();
+        this.isModalClosed = true;
+    }
 
-        });
-
+   cancelButton() {
+        this.closeModal();
+        this.isModalClosed = true;
     }
 
 
     closeOverlay(){
         this.closeModal()
+        this.isModalClosed = true;
     }
 
 
@@ -55,7 +56,7 @@ class MyPage extends LitElement {
         const myModal = this.shadowRoot.querySelector('my-modal');
         if (myModal) {
             myModal.classList.add('close');
-            this.isModalOpen = false;
+            this.isModalClosed = true;
         }
     }
 
@@ -63,7 +64,7 @@ class MyPage extends LitElement {
     escapeButton(event) {
         if (event.key === "Escape") {
             this.closeModal(); 
-            this.isModalOpen = true;
+            this.isModalClosed = true;
         }
     }
 
@@ -72,7 +73,8 @@ class MyPage extends LitElement {
         const myModal = this.shadowRoot.querySelector('my-modal');
         if (myModal) {
             myModal.classList.remove('close');
-            this.isModalOpen = true;
+            this.isModalClosed = true;
+            this.isButtonClicked = false;
         }
     }
 
@@ -81,25 +83,14 @@ class MyPage extends LitElement {
         const myModal = this.shadowRoot.querySelector('my-modal');
         if (myModal) {
 
-            if (this.isModalOpen) {
+            if (this.isModalClosed) {
                 this.openModal();
             } else {
                 this.closeModal();
             }
-            this.isModalOpen = !this.isModalOpen;
+            this.isModalClosed = !this.isModalClosed;
         }
     }
-
-
-    // escapeButton(event) {
-    //     const myModal = this.shadowRoot.querySelector('my-modal');
-    //     if (event.key === "Escape") {
-    //         this.closeModal();
-    //     }
-    // }
-    
-   
-
 
     render() {
         return html `
@@ -108,8 +99,6 @@ class MyPage extends LitElement {
     `
     }
 }
-
-
 
 customElements.define('my-page', MyPage)
 

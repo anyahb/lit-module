@@ -15,32 +15,21 @@ class MyModal extends LitElement {
     static styles = [
         style
     ]
-    
-        static properties = {
-            title: "test",
-          }
+
+    static properties = {
+        title: "test",
+    }
 
     constructor() {
         super()
-        // this.title = "default"
-        console.log("title", this)
-
-
         this.formValues = {}
-        
-
         this.addEventListener('form-value-changed', this.handleFormValueChange)
         this.addEventListener('submit-button-clicked', this.onSubmit)
         this.addEventListener('cancel-button-clicked', this.onCancel)
-
-        // this.title = "hi"
     }
-
-    
 
     handleFormValueChange(event) {
         const detail = event.detail
-
         this.formValues = {
             name: detail.name,
             country: detail.country,
@@ -53,12 +42,12 @@ class MyModal extends LitElement {
             bubbles: true,
             composed: true
         }));
-        
+
     }
 
     onSubmit(event) {
         this.dispatchEvent(new CustomEvent('modal-submitted', {
-            detail: this.formValues, // Include any data you want to pass
+            detail: this.formValues,
             bubbles: true,
             composed: true
         }));
@@ -72,7 +61,6 @@ class MyModal extends LitElement {
         }));
     }
 
-
     closeOverlay(event) {
         this.dispatchEvent(new CustomEvent('close-overlay', {
             bubbles: true,
@@ -80,14 +68,12 @@ class MyModal extends LitElement {
         }));
     }
 
-
-
     render() {
         return html `
         <div id="overlay" class="${this.hasCloseClass ? '' : 'open'}"   @click="${this.closeOverlay}"></div>
         <div class="other">
         <header>
-        <p>${this.title}</p>
+        <p class="title">${this.title}</p>
         </header>
         <my-form class="my-form"></my-form>
         <my-footer></my-footer>
@@ -102,10 +88,7 @@ class MyModal extends LitElement {
 
     get otherDiv() {
         return this.shadowRoot.querySelector('.other');
-      }
-    
-
-
+    }
 }
 
 customElements.define('my-modal', MyModal)

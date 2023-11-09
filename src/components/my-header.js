@@ -5,7 +5,6 @@ import {
 
 import style from "../styles.css" assert {type: "css"}
 
-// defining a custom element for the Header
 class MyHeader extends LitElement {
 
 
@@ -16,15 +15,14 @@ class MyHeader extends LitElement {
 
     static properties = {
         title: { type: String },
-        isModalOpen: {attribute: false}
+        isModalClosed: {attribute: false}
       }
 
     constructor() {
         super()
-        this.isModalOpen = false
+        this.isModalClosed = false
     }
 
-    // render the Header
     render() {
         return html `
         <div>
@@ -34,32 +32,9 @@ class MyHeader extends LitElement {
     }
 }
 
-// register "my-header"
 customElements.define('my-header', MyHeader)
 
 
 const Header = document.querySelector('my-header')
 const myModal = document.querySelector('#my-modal')
-
-
-// adding an event listener to toggle the form's visibility
-// let isModalOpen = false
-
-
-// Header.addEventListener('toggle-form', () => {
-//     // form.style.display = form.style.display === 'none' ? 'block' : 'none'
-
-//     isModalOpen = !isModalOpen
-
-//     if (isModalOpen) {
-//         // then open
-//         myModal.style.maxHeight = '100%'
-//         myModal.style.opacity = '1'
-      
-//     } else {
-//         // then close
-//         myModal.style.maxHeight = '0'
-//         myModal.style.opacity = '0'
-//     }
-// })
 

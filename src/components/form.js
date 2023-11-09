@@ -3,9 +3,8 @@ import {
     html
 } from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js'
 
-import style from "../styles.css" assert {type: "css"}
+import style from "../styles.css" assert { type: "css"}
 
-// defining a custom element for the form
 class MyForm extends LitElement {
 
     updateFormValues() {
@@ -25,7 +24,6 @@ class MyForm extends LitElement {
 
     updated(changedProperties) {
         super.updated(changedProperties)
-
         if (
             changedProperties.has('name') ||
             changedProperties.has('country') ||
@@ -36,26 +34,35 @@ class MyForm extends LitElement {
         }
     }
 
-     handleNameChange(e) {
-        this.name = e.target.value 
+    handleNameChange(e) {
+        this.name = e.target.value
     }
 
     handleGenderChange(e) {
         this.gender = e.target.value
     }
 
-
     static styles = [
         style
     ]
 
     static properties = {
-        name: {type: String},
-        form: {type: Object},
-        country: { type: String },
-        subscribe: { type: Boolean },
-        gender: { type: String }
-      }
+        name: {
+            type: String
+        },
+        form: {
+            type: Object
+        },
+        country: {
+            type: String
+        },
+        subscribe: {
+            type: Boolean
+        },
+        gender: {
+            type: String
+        }
+    }
 
     constructor() {
         super()
@@ -63,20 +70,7 @@ class MyForm extends LitElement {
         this.country = 'usa'
         this.subscribe = false
         this.gender = 'male'
-      }
-
-    //   clickHandler() {
-
-    //     const userInputs = {
-    //       name: this.name,
-    //       country: this.country,
-    //       subscribe: this.subscribe,
-    //       gender: this.gender
-    //     }
-    //     console.log(userInputs)
-    //   }
-
-  // <div class="main-button" @click="${this.clickHandler}">Test</div>
+    }
 
     render() {
         return html `
@@ -104,13 +98,9 @@ class MyForm extends LitElement {
                     <input type="radio" id="female" name="gender" value="female" @change="${this.handleGenderChange}" .checked="${this.gender === 'female'}">
                     <label for="female">Female</label>
                 </div>
-
-              
             </form>
         `
     }
 }
 
-
-// register "my-form"
 customElements.define('my-form', MyForm)
