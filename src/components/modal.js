@@ -41,7 +41,7 @@ class MyModal extends LitElement {
             detail: this.formValues,
             bubbles: true,
             composed: true
-        }));
+        }))
 
     }
 
@@ -50,7 +50,7 @@ class MyModal extends LitElement {
             detail: this.formValues,
             bubbles: true,
             composed: true
-        }));
+        }))
 
     }
 
@@ -58,14 +58,14 @@ class MyModal extends LitElement {
         this.dispatchEvent(new CustomEvent('modal-cancelled', {
             bubbles: true,
             composed: true
-        }));
+        }))
     }
 
     closeOverlay(event) {
         this.dispatchEvent(new CustomEvent('close-overlay', {
             bubbles: true,
             composed: true
-        }));
+        }))
     }
 
     render() {
@@ -82,12 +82,12 @@ class MyModal extends LitElement {
     }
 
     get hasCloseClass() {
-        return this.classList.contains('close');
+        return this.classList.contains('close')
     }
 
 
     get otherDiv() {
-        return this.shadowRoot.querySelector('.other');
+        return this.shadowRoot.querySelector('.other')
     }
 }
 

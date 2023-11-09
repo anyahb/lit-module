@@ -7,8 +7,6 @@ import style from "../styles.css" assert {type: "css"}
 
 class MyHeader extends LitElement {
 
-
-
     static styles = [
         style
     ]

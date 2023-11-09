@@ -16,18 +16,18 @@ class MyFooter extends LitElement {
 
     static properties = {
         isSpinnerHidden: true,
-      };
+      }
 
 
     constructor(){
         super()
         this.isSpinnerHidden = true
-        this.isButtonClicked = false;
+        this.isButtonClicked = false
     }
 
     submitHandler() {
         this.isSpinnerHidden = false
-        this.isButtonClicked = true;
+        this.isButtonClicked = true
         setTimeout(() => {
             this.isSpinnerHidden = true
             this.dispatchEvent(new CustomEvent('submit-button-clicked', {
@@ -35,7 +35,7 @@ class MyFooter extends LitElement {
                 composed: true
             }))
 
-            this.isButtonClicked = false;
+            this.isButtonClicked = false
         }, 2000)
     }
 
